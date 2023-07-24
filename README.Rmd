@@ -1,0 +1,14 @@
+---
+title: "Occurrence of human infection with Salmonella Typhi in sub-Saharan Africa"
+output: github_document
+date: "2023-07-24"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 
+
