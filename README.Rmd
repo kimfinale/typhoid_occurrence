@@ -10,7 +10,8 @@ editor_options:
 knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE)
 ```
 
-## Source the util.R file and load packages
+
+Source the util.R file and load packages
 
 ```{r}
 source("R/util.R") # this has ggplot theme, theme_map() 
@@ -19,7 +20,7 @@ library(tidyverse) # dplyr and ggplot2 packages are used
 library(raster) # raster 
 library(countrycode) # iso3c codes
 library(sf) # st_contains function to check if the point is inside a polygon
-library(patchwork)
+library(patchwork) # combine multiple plots 
 library(readxl) # read XLSX files
 ```
 
@@ -77,8 +78,8 @@ p2 <- ggplot(data = d_co_yr) +
   theme_bw() +
   theme(axis.ticks.length=unit(-2.75, "pt"),
         legend.position = "bottom")
-p2
 
+p2
 #### Figure 2C
 
 d %>% 
@@ -107,13 +108,14 @@ p3 <- ggplot(data = d_co_yr) +
   theme_bw() + 
   theme(axis.ticks.length=unit(-2.75, "pt"), 
         legend.position = "bottom")
+
 p3
 
 p <- p1 + p2 + p3 + 
   plot_layout(ncol = 1, heights = c(1.2, 2, 2)) + 
   plot_annotation(tag_levels = "A")
 
-fac <- 3.5
+# fac <- 3.5
 # ggsave(paste0("plots/occ_plots_", tstamp(), ".png"), p,
 #        width = 3.4*1.8, height = 3.4*fac, units="in")
 ```
@@ -198,6 +200,7 @@ for (ii in 1:length(cnames)){
 p <- plist[[1]] + plist[[2]] + plist[[3]] + plist[[4]] +
   plot_layout(ncol = 2)
 
+p
 # ggsave(paste0("plots/occ_grids_4_countries_", tstamp(), ".png"), p, width=7.7, height=7.3, units="in")
 ```
 
@@ -258,9 +261,10 @@ df
 d |> 
   distinct(STUDY_INFO, .keep_all = TRUE) %>% 
   group_by(DIAGNOSTIC_METHOD_SUMMARY) |> 
-  tally(sort=T) -> dx
+  tally(sort=T) -> tab
 
-dx$percent <- 100 * dx$n / sum(dx$n)
+tab$percent <- 100 * tab$n / sum(tab$n)
+tab
 ```
 
 Study types
