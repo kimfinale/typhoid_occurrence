@@ -10,7 +10,8 @@ editor_options:
 knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE)
 ```
 
-### Source the util.R file and load packages
+## Source the util.R file and load packages
+
 ```{r}
 source("R/util.R") # this has ggplot theme, theme_map() 
 library(tidyverse) # dplyr and ggplot2 packages are used
@@ -22,7 +23,7 @@ library(patchwork)
 library(readxl) # read XLSX files
 ```
 
-### Figure 2
+## Figure 2
 Plot the frequency of publications by country and year
 
 ```{r}
@@ -118,7 +119,7 @@ fac <- 3.5
 ```
 
 
-#### Figure 3
+## Figure 3
 Plot the grid cells of typhoid occurrence on the map of 
 countries that have the largest number of records: "Nigeria", "Tanzania, United Republic of", "Kenya", "Ghana"
 T
@@ -200,7 +201,7 @@ p <- plist[[1]] + plist[[2]] + plist[[3]] + plist[[4]] +
 # ggsave(paste0("plots/occ_grids_4_countries_", tstamp(), ".png"), p, width=7.7, height=7.3, units="in")
 ```
 
-### Number of points for the country
+Number of points for the country
 ```{r}
 afss <- readRDS("data/africa_sub_Sahara_adm0_shp.rds")
 dculture <- d[grepl("culture", d$DIAGNOSTIC_METHOD_SUMMARY, ignore.case = TRUE),]
@@ -251,7 +252,7 @@ for (i in 1:nrow(df)) {
 df
 ```
 
-### Table 1
+## Table 1
 
 ```{r}
 d |> 
@@ -262,7 +263,7 @@ d |>
 dx$percent <- 100 * dx$n / sum(dx$n)
 ```
 
-### Study types
+Study types
 
 ```{r}
 d |> 
